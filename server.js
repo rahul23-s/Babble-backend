@@ -9,12 +9,7 @@ const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middlewares/error");
 
-app.use(
-  cors({
-    credentials: true,
-    origin: ["https://babble-fynd.netlify.app/"],
-  })
-);
+app.use(cors());
 
 dotenv.config();
 
