@@ -1,9 +1,7 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 5000;
-const chats = require("./sampleData");
 const dotenv = require("dotenv");
-const path = require("path");
 const cors = require("cors");
 const connectToDB = require("./database");
 const userRoutes = require("./routes/userRoutes");
