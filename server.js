@@ -42,7 +42,7 @@ const server = app.listen(PORT, () => {
 const io = require("socket.io")(server, {
   pingTimeout: 50000,
   cors: {
-    origin: "https://babble-fynd.netlify.app/",
+    origins: ["*"],
   },
 });
 
