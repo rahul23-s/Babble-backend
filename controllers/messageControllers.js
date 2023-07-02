@@ -62,11 +62,11 @@ const deleteMessage = expressAsyncHandler(async (req, res) => {
       return res.status(404).json({ message: "Message not found" });
     }
 
-    res.json({ message: "Message deleted successfully" });
+    res.json({ message: "Message deleted successfully", data: deletedMessage });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
   }
-})
+});
 
 module.exports = { sendMessage, allMessages, deleteMessage };
