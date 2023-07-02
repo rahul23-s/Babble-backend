@@ -51,4 +51,22 @@ const allMessages = expressAsyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { sendMessage, allMessages };
+const deleteMessage = expressAsyncHandler(async (req, res) => {
+  try {
+    const { messageId } = req.params;
+
+    // Find the message by its _id and delete it
+    const deletedMessage = await Message.findByIdAndDelete(messageId);
+
+    if (!deletedMessage) {
+      return res.status(404).json({ message: "Message not found" });
+    }
+
+    res.json({ message: "Message deleted successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+})
+
+module.exports = { sendMessage, allMessages, deleteMessage };
