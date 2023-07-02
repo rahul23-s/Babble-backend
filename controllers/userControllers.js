@@ -2,6 +2,17 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/user");
 const generateToken = require("../jwt/generateToken");
 
+const updateProfilePhoto = asyncHandler(async (req, res) => {
+  const { userId, avatar } = req.body;
+
+  const user = await User.findOneAndUpdate(
+    { _id: userId },
+    { $set: { avatar } },
+    { new: true }
+  );
+  res.status(200).send(user);
+})
+
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password, avatar } = req.body;
 
@@ -66,4 +77,4 @@ const allUsers = asyncHandler(async (req, res) => {
   res.send(users);
 });
 
-module.exports = { registerUser, authUser, allUsers };
+module.exports = { registerUser, updateProfilePhoto, authUser, allUsers };
